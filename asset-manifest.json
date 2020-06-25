@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/PodcastCommuter/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/PodcastCommuter/static/js/main.e1444b71.chunk.js",
+    "main.js.map": "/PodcastCommuter/static/js/main.e1444b71.chunk.js.map",
+    "runtime-main.js": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js",
+    "runtime-main.js.map": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js.map",
+    "static/js/2.88e3c28c.chunk.js": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js",
+    "static/js/2.88e3c28c.chunk.js.map": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js.map",
+    "index.html": "/PodcastCommuter/index.html",
+    "precache-manifest.61592d38aaa99e36cd3b73bed03dd60d.js": "/PodcastCommuter/precache-manifest.61592d38aaa99e36cd3b73bed03dd60d.js",
+    "service-worker.js": "/PodcastCommuter/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/PodcastCommuter/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.88e3c28c.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90a3fa30.js",
+    "static/js/2.88e3c28c.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.e1444b71.chunk.js"
+  ]
+}
