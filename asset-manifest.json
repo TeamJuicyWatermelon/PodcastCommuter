@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/PodcastCommuter/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/PodcastCommuter/static/js/main.e1444b71.chunk.js",
-    "main.js.map": "/PodcastCommuter/static/js/main.e1444b71.chunk.js.map",
+    "main.css": "/PodcastCommuter/static/css/main.d3e90ca2.chunk.css",
+    "main.js": "/PodcastCommuter/static/js/main.b47b20c9.chunk.js",
+    "main.js.map": "/PodcastCommuter/static/js/main.b47b20c9.chunk.js.map",
     "runtime-main.js": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js",
     "runtime-main.js.map": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js.map",
-    "static/js/2.88e3c28c.chunk.js": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js",
-    "static/js/2.88e3c28c.chunk.js.map": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js.map",
+    "static/js/2.1afcb9be.chunk.js": "/PodcastCommuter/static/js/2.1afcb9be.chunk.js",
+    "static/js/2.1afcb9be.chunk.js.map": "/PodcastCommuter/static/js/2.1afcb9be.chunk.js.map",
     "index.html": "/PodcastCommuter/index.html",
-    "precache-manifest.61592d38aaa99e36cd3b73bed03dd60d.js": "/PodcastCommuter/precache-manifest.61592d38aaa99e36cd3b73bed03dd60d.js",
+    "precache-manifest.d80efc9367ab04626d7147284a720af2.js": "/PodcastCommuter/precache-manifest.d80efc9367ab04626d7147284a720af2.js",
     "service-worker.js": "/PodcastCommuter/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/PodcastCommuter/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.88e3c28c.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.88e3c28c.chunk.js.LICENSE.txt"
+    "static/css/main.d3e90ca2.chunk.css.map": "/PodcastCommuter/static/css/main.d3e90ca2.chunk.css.map",
+    "static/js/2.1afcb9be.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.1afcb9be.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/PodcastCommuter/static/media/watermelon.45fee90d.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.90a3fa30.js",
-    "static/js/2.88e3c28c.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.e1444b71.chunk.js"
+    "static/js/2.1afcb9be.chunk.js",
+    "static/css/main.d3e90ca2.chunk.css",
+    "static/js/main.b47b20c9.chunk.js"
   ]
 }
