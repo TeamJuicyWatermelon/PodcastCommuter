@@ -7,7 +7,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      userTyping: '',
       podcasts: [],
       genre: '',
       isPodcastShown: false,
@@ -15,108 +14,114 @@ class App extends Component {
       from: '',
       to: '',
       isMapShown: false,
-      routeType: '',
       minTime: '',
       maxTime: '',
     };
   }
 
-  // componentDidMount() {
-  //   /* Map API */
-  //   axios({
-  //     url: "http://www.mapquestapi.com/directions/v2/route",
-  //     method: "GET",
-  //     responseType: "JSONP",
-  //     params: {
-  //       key: "EP7bQzAhNEdKJsfFtJeLQDYa3muNllNO",
-  //       from: "483 Queen St W, Toronto, ON",
-  //       to: "152 Spadina Av, Toronto, ON",
-  //     },
-  //   }).then((response) => {
-  //     console.log(response);
-  //   });
-
-  //   axios({
-  //     /* Podcast API */
-  //     url: "https://listen-api.listennotes.com/api/v2/search",
-  //     method: "GET",
-  //     headers: { "X-ListenAPI-Key": "efedd950b2d84805a5c9ede9b4543e23" },
-  //     responseType: "JSON",
-  //     params: {
-  //       q: "Personal Finance",
-  //       type: "episode",
-  //       language: "English",
-  //     },
-  //   }).then((response) => {
-  //     console.log(response);
-  //     this.setState({
-  //       podCast: response.data.results[0],
-  //     });
-  //   });
-  // }
-
-  //Function to update user's keystroke to current state
+  //Function to update user's input to current address state
  handleChange = (event) => {
-  //  event.preventDefault();
   this.setState({
     [event.target.name]: event.target.value,
   })
 }
 
-//Function to make the Direction API call
-handleSubmit = (event) => {
+//Function to display MAP and get commute time lengths for both route types
+displayMap = (event) => {
   event.preventDefault();
+
   if (this.state.from !== '' && this.state.to !== '') {
-    axios({
-      url: 'http://www.mapquestapi.com/directions/v2/route',
-      method: 'GET',
-      responseType: 'JSONP',
-      params: {
-        key: 'EP7bQzAhNEdKJsfFtJeLQDYa3muNllNO',
-        routeType: 'pedestrian',
-        from: this.state.from,
-        to: this.state.to,
-      }
-    }).then((response) => {
-      const commuteTimeSec = response.data.route.realTime;
-      let commuteTimeMin =`${commuteTimeSec / 60}`;
-      const roundedTime = Math.round(commuteTimeMin);
-      // console.log(roundedTime);
-      
-      const min = roundedTime - 1;
-      const max = roundedTime + 1;
-      console.log(min);
-      console.log(max);
-      this.setState({
-        isMapShown: true,
-        minTime: min,
-        maxTime: max,
-      })
-    })
 
-    
-    console.log(this.state.maxTime);
+    const routeType = ['bicycle', 'pedestrian'];
+    routeType.map(type => {
+      return (
+        //Call Mapquest API to determine commute time
+        axios({
+          url: 'http://www.mapquestapi.com/directions/v2/route',
+          method: 'GET',
+          responseType: 'JSONP',
+          params: {
+            key: 'EP7bQzAhNEdKJsfFtJeLQDYa3muNllNO',
+            routeType: type,
+            from: this.state.from,
+            to: this.state.to,
+          }
+        }).then((response) => {
+          //get commute time in seconds
+          const commuteTimeSec = response.data.route.realTime;
+          //convert commute time to minutes
+          let commuteTimeMin =`${commuteTimeSec / 60}`;
+          let roundedTime = Math.round(commuteTimeMin);
+          // let roundedTime = commuteTimeMin;
 
-    axios({
-      url: 'https://listen-api.listennotes.com/api/v2/search',
-      method: 'GET',
-      headers: { 'X-ListenAPI-Key': 'ea2d65fb95fc4f59a943faa7a423b3ad' },
-      responseType: 'JSON',
-      params: {
-        q: 'general', //this.state.genre  here
-        type: "episode",
-        language: "English",
-        len_min:this.state.minTime, //this.state.commuteTime  here
-        len_max: this.state.maxTime, //this.state.commuteTime here
-      }
-    }).then((response) => {
-      response = response.data.results;
-      this.setState({
-        podcasts: response,
-      })
-    }) 
+
+          // if (roundedTime > 60) {
+          //   let roundedTimeInHours = Math.round(roundedTime / 60);
+          //   // let roundedTimeInHours = roundedTime / 60;
+
+          //   console.log(type,roundedTimeInHours);
+          // }
+
+          this.setState({
+            isMapShown: true,
+            [type]: roundedTime,
+          })
+
+        })
+      )
+    })   
   }
 }
+
+//Function to call Poscast API
+getPodcasts = (transportationType) => {
+  // commuteType is the argument from onClick funtions (choose route type section)
+  console.log(transportationType);
+  let minLen;
+  let maxLen;
+
+  if (transportationType === 'bicycle') {
+    //set maximum and minimum podcast lengths to call Podcasts
+
+     minLen = this.state.bicycle;
+     maxLen = Math.round((this.state.bicycle * 1.1) + 1);
+    // minLen = this.state.bicycle - 1;
+    // maxLen = this.state.bicycle + 1;
+    // minLen = (this.state.bicycle * 0.9);
+    // maxLen = (this.state.bicycle * 1.1);
+    console.log(minLen, maxLen);
+  } else if (transportationType === 'pedestrian') {
+    //set maximum and minimum podcast lengths to call Podcasts
+    minLen = this.state.pedestrian;
+    maxLen = Math.round((this.state.pedestrian * 1.1) + 1);
+    // minLen = 1;
+    // maxLen = 5;
+    console.log(minLen, maxLen);
+  }
+      //Call Podcast API
+      axios({
+        url: 'https://listen-api.listennotes.com/api/v2/search',
+        method: 'GET',
+        headers: { 'X-ListenAPI-Key': 'ea2d65fb95fc4f59a943faa7a423b3ad' },
+        responseType: 'JSON',
+        params: {
+          q: 'general', //this.state.genre  here
+          type: "episode",
+          language: "English",
+          len_min: minLen, 
+          len_max: maxLen, 
+        }
+      }).then((response) => {
+        response = response.data.results;
+        console.log(response);
+        this.setState({
+          podcasts: response,
+        })
+      }).catch((err) => {
+        console.log(err); //ERROR HANDLING NEEDED HERE!!!
+      }) 
+}
+
 //----------------------------------
 //Function to display chosen Postcast
 displayChosenPodcast = (podcast) => {
@@ -131,6 +136,7 @@ displayChosenPodcast = (podcast) => {
     const chosenPodcast = this.state.chosenPodcast;
     //Assign the mapUrl to a variable
     const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?start=${this.state.from}&end=${this.state.to}&size=400,200@2x&key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl`;
+
     return (
       <div className="App">
         <div className="flexContainer">
@@ -193,7 +199,7 @@ displayChosenPodcast = (podcast) => {
                   Choose a podcast category!
                 </option>
               </select>
-              <button onClick={this.handleSubmit}>LET'S GO!</button>
+              <button onClick={this.displayMap}>LET'S GO!</button>
             </form>
           </div>
         </section>
@@ -212,12 +218,17 @@ displayChosenPodcast = (podcast) => {
           }
 
             <div className="transportationMode">
-              <a href="#here">
+              <a onClick={() => this.getPodcasts('bicycle')}  href="#here">
                 <img src={watermelonBikeIcon} alt="Transportation via biking" />
               </a>
-              <a href="#here">
+              {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
+              <p>{this.state.bicycle} mins</p> 
+
+              <a onClick={() => this.getPodcasts('pedestrian')}  href="#here">
                 <img src={walkingIcon} alt="Transportation via walking" />
               </a>
+              {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
+              <p>{this.state.pedestrian} mins</p>
             </div>
           </div>
         </section>
@@ -226,12 +237,14 @@ displayChosenPodcast = (podcast) => {
           <div id="here" className="wrapper">
             <h2>Pick your podcast!</h2>
             <ul className="podcastSection">
+          {/* Map out the state of 'podcasts' array */}
           {this.state.podcasts.map(podcast => {
             return (
               <li key={podcast.id}>
                 <h2>{podcast.podcast_title_original}</h2>
                 <img src={podcast.image} alt={podcast.podcast_title_original}/>
                 <p>Author: {podcast.publisher_original}</p>
+                <p>Time: {podcast.audio_length_sec / 60} mins</p>
                 <a href={podcast.link}>More Info</a>
                 <button onClick={() => this.displayChosenPodcast(podcast)}>Choose</button>
               </li>

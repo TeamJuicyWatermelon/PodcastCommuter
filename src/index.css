@@ -354,8 +354,10 @@ li {
 
 .background3 {
   background-image: url("./assets/watermelon2.jpg");
-  background-size: cover;
-  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* height: 100vh; */
+  
 }
 
 /* #FFF6F7 beige, #E0F8D1 green, #F05F77 pink */
