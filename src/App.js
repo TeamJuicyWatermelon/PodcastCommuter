@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import walkingIcon from "./assets/walkingIcon.png";
 import watermelonBikeIcon from "./assets/watermelonBikeIcon.png";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -16,16 +17,26 @@ class App extends Component {
       isMapShown: false,
       minTime: '',
       maxTime: '',
+      podcastGenre: '',
     };
   }
 
+  scrollToSearch = (event) => {
+    event.preventDefault();
+    console.log("click");
+    const searchSection = document.querySelector('.background1');
+    searchSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
 
-//Function to update user's input to current address state
-handleChange = (event) => {
-  this.setState({
-    [event.target.name]: event.target.value,
-  })
-}
+  //Function to update user's input to current address state
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
 
 //Function to display MAP and get commute time lengths for both route types
 displayMap = (event) => {
@@ -46,8 +57,10 @@ displayMap = (event) => {
             routeType: type,
             from: this.state.from,
             to: this.state.to,
+            unit: "k", 
           }
         }).then((response) => {
+          console.log(response.data.route);
           //get commute time in seconds
           const commuteTimeSec = response.data.route.realTime;
           //convert commute time to minutes
@@ -96,7 +109,8 @@ getPodcasts = (transportationType) => {
         headers: { 'X-ListenAPI-Key': 'ea2d65fb95fc4f59a943faa7a423b3ad' },
         responseType: 'JSON',
         params: {
-          q: 'general', //this.state.genre  here
+          q: "podcast",
+          genre_ids: this.state.podcastGenre,
           type: "episode",
           language: "English",
           len_min: minLen, 
@@ -148,7 +162,7 @@ displayChosenPodcast = (podcast) => {
                   most time coordinated podcast just for you and your commute!
                 </li>
               </ul>
-              <button>Let's get started! </button>
+              <button className="startButton" onClick={this.scrollToSearch}>Let's get started! </button>
               {/* the below can go into a component (renders title, link, and image of podcast) */}
               {/* <div className="podcast">
                 <a href={this.state.podCast.audio}>
@@ -184,12 +198,31 @@ displayChosenPodcast = (podcast) => {
               type="text" 
               placeholder="Street, city, postal code" />
 
-              <label htmlFor="">Podcast genre</label>
-              <select name="" id="">
-                <option disable value="">
-                  Choose a podcast category!
-                </option>
+              <label htmlFor="podcastGenre">Podcast genre</label>
+              <select name="podcastGenre" id="podcastGenre" onChange={this.handleChange}>
+                <option disabled value="">Choose a podcast category!</option>
+                <option value="144">Personal Finance</option>
+                <option value="77">Sports</option>  
+                <option value="93">Business</option>
+                <option value="111">Education</option>
+                <option value="100">Arts</option>
+                <option value="132">Kids & Family</option>
+                <option value="122">Society & Culture</option>
+                <option value="133">Comedy</option>
+                <option value="168">Fiction</option>
+                <option value="117">Government</option>
+                <option value="88">Health & Fitness</option>
+                <option value="125">History</option>
+                <option value="82">Leisure</option>
+                <option value="134">Music</option>
+                <option value="99">News</option>
+                <option value="69">Religion & Spirituality</option>
+                <option value="107">Science</option>
+                <option value="68">TV & Film</option>
+                <option value="127">Technology</option>
+                <option value="135">True Crime</option>
               </select>
+
               <button onClick={this.displayMap}>LET'S GO!</button>
             </form>
           </div>
@@ -209,13 +242,13 @@ displayChosenPodcast = (podcast) => {
           }
 
             <div className="transportationMode">
-              <a onClick={() => this.getPodcasts('bicycle')}  href="#here">
+              <a onClick={() => this.getPodcasts('bicycle')}>
                 <img src={watermelonBikeIcon} alt="Transportation via biking" />
               </a>
               {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
               <p>{this.state.bicycle} mins</p> 
 
-              <a onClick={() => this.getPodcasts('pedestrian')}  href="#here">
+              <a onClick={() => this.getPodcasts('pedestrian')}>
                 <img src={walkingIcon} alt="Transportation via walking" />
               </a>
               {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
@@ -236,6 +269,7 @@ displayChosenPodcast = (podcast) => {
                 <img src={podcast.image} alt={podcast.podcast_title_original}/>
                 <p>Author: {podcast.publisher_original}</p>
                 <p>Time: {podcast.audio_length_sec / 60} mins</p>
+                <p>Description: {podcast.description_original}</p>
                 <a href={podcast.link}>More Info</a>
                 <button onClick={() => this.displayChosenPodcast(podcast)}>Choose</button>
               </li>
@@ -262,6 +296,5 @@ displayChosenPodcast = (podcast) => {
     );
   }
 }
+
 export default App;
-
-
