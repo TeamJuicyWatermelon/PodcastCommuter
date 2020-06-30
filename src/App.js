@@ -19,8 +19,9 @@ class App extends Component {
     };
   }
 
-  //Function to update user's input to current address state
- handleChange = (event) => {
+
+//Function to update user's input to current address state
+handleChange = (event) => {
   this.setState({
     [event.target.name]: event.target.value,
   })
@@ -54,14 +55,6 @@ displayMap = (event) => {
           let roundedTime = Math.round(commuteTimeMin);
           // let roundedTime = commuteTimeMin;
 
-
-          // if (roundedTime > 60) {
-          //   let roundedTimeInHours = Math.round(roundedTime / 60);
-          //   // let roundedTimeInHours = roundedTime / 60;
-
-          //   console.log(type,roundedTimeInHours);
-          // }
-
           this.setState({
             isMapShown: true,
             [type]: roundedTime,
@@ -94,8 +87,6 @@ getPodcasts = (transportationType) => {
     //set maximum and minimum podcast lengths to call Podcasts
     minLen = this.state.pedestrian;
     maxLen = Math.round((this.state.pedestrian * 1.1) + 1);
-    // minLen = 1;
-    // maxLen = 5;
     console.log(minLen, maxLen);
   }
       //Call Podcast API
