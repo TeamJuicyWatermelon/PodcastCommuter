@@ -1,0 +1,27 @@
+#Pseudo Code
+
+* (Required)Create 2 input boxes to let user insert their location(starting point & destination)
+
+* (Required)Create a drop-down list to let user choose their podcast genre 
+
+* User would recieve error message if they did not fill up the requirements and click search.
+
+* Once user fill up all the requirements and click submit, using this.setstate to update the user input variables
+
+* Using Mapquest API to catch errors if user put an invalid address, display error message to the user
+
+* Call the Mapquest API to display map including the best route, starting point and destination
+
+* Mapquest API will display options, walk or bike travel time to the user
+
+* Once user choose their choice(walk or bike), Call the Listen Notes API to select correct podcast genre
+
+* According to the user travel time, suggest the time length within travel time range (+/-)
+
+* If there is no return item from Listen Notes API, display no match items to user
+
+* Listen Notes API generates all the choices to the user
+
+* User can pick their podcast
+
+* Display the user podcast choice and give details (including audio) to the user

@@ -24,7 +24,6 @@ class App extends Component {
 
   scrollToSearch = (event) => {
     event.preventDefault();
-    console.log("click");
     const searchSection = document.querySelector(".background1");
     searchSection.scrollIntoView({
       behavior: "smooth",
@@ -37,6 +36,7 @@ class App extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
+    console.log(event.target.value)
   };
 
   //Function to display MAP and get commute time lengths for both route types
@@ -49,7 +49,7 @@ class App extends Component {
         return (
           //Call Mapquest API to determine commute time
           axios({
-            url: "http://www.mapquestapi.com/directions/v2/route",
+            url: "https://www.mapquestapi.com/directions/v2/route",
             method: "GET",
             responseType: "JSONP",
             params: {
@@ -224,7 +224,7 @@ class App extends Component {
                 id="podcastGenre"
                 onChange={this.handleChange}
               >
-                <option value="" selected disabled>
+                <option value="" defaultValue disabled>
                   Choose a podcast genre
                 </option>
                 <option value="144">Personal Finance</option>
@@ -266,21 +266,21 @@ class App extends Component {
                 <ul>
                   <li>
                     {" "}
-                    <a onClick={() => this.getPodcasts("bicycle")}>
+                    <button onClick={() => this.getPodcasts("bicycle")}>
                       <img
                         src={watermelonBikeIcon}
                         alt="Transportation via biking"
                       />
-                    </a>
+                    </button>
                   </li>
                   <li>Bicycle Time: {this.state.bicycle} minutes</li>
                 </ul>
                 {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
                 <ul>
                   <li>
-                    <a onClick={() => this.getPodcasts("pedestrian")}>
+                    <button onClick={() => this.getPodcasts("pedestrian")}>
                       <img src={walkingIcon} alt="Transportation via walking" />
-                    </a>
+                    </button>
                   </li>
                   <li>Walking Time: {this.state.pedestrian} minutes</li>
                 </ul>
