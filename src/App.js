@@ -19,6 +19,7 @@ class App extends Component {
       minTime: "",
       maxTime: "",
       podcastGenre: "",
+      search: "",
     };
   }
 
@@ -36,7 +37,7 @@ class App extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value)
+    console.log(event.target.value);
   };
 
   //Function to display MAP and get commute time lengths for both route types
@@ -57,7 +58,6 @@ class App extends Component {
               routeType: type,
               from: this.state.from,
               to: this.state.to,
-              unit: "k",
             },
           }).then((response) => {
             console.log(response.data.route);
@@ -82,6 +82,17 @@ class App extends Component {
           })
         );
       });
+      // BELOW IS AN AXIOS ATTEMPT FOR SEARCH AHEAD / PREDICTION
+      // axios({
+      //   url: "https://www.mapquestapi.com/search/v3/prediction",
+      //   method: "GET",
+      //   responseType: "JSONP",
+      //   params: {
+      //     key: "EP7bQzAhNEdKJsfFtJeLQDYa3muNllNO",
+      //     q: this.state.to,
+      //     collection: "address",
+      //   },
+      // });
     }
   };
 
@@ -111,13 +122,18 @@ class App extends Component {
       console.log(minLen, maxLen);
     }
     //Call Podcast API
+    // if (this.state.search === "") {
+    //   this.setState({
+    //     search: "podcast",
+    //   });
+    // }
     axios({
       url: "https://listen-api.listennotes.com/api/v2/search",
       method: "GET",
       headers: { "X-ListenAPI-Key": "ea2d65fb95fc4f59a943faa7a423b3ad" },
       responseType: "JSON",
       params: {
-        q: "podcast",
+        q: this.state.search + this.state.podcastGenre,
         genre_ids: this.state.podcastGenre,
         type: "episode",
         language: "English",
@@ -151,6 +167,8 @@ class App extends Component {
     const chosenPodcast = this.state.chosenPodcast;
     //Assign the mapUrl to a variable
     const mapImage = `https://www.mapquestapi.com/staticmap/v5/map?start=${this.state.from}&end=${this.state.to}&size=400,200@2x&key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl`;
+    // const addressTo = `https://www.mapquestapi.com/search/v3/prediction?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&q=${this.state.to}&collection=address`;
+    // const addressFrom = `https://www.mapquestapi.com/search/v3/prediction?key=GjfNgstNA6zUKUgGcbkAzOwhHGvwyPRl&q=${this.state.from}&collection=address`;
 
     return (
       <div className="App">
@@ -181,15 +199,6 @@ class App extends Component {
               <button className="startButton" onClick={this.scrollToSearch}>
                 Let's get started!{" "}
               </button>
-              {/* the below can go into a component (renders title, link, and image of podcast) */}
-              {/* <div className="podcast">
-                <a href={this.state.podCast.audio}>
-                  {" "}
-                  <h2>{this.state.podCast.podcast_title_original}</h2>
-                  <img src={this.state.podCast.image} />
-                </a>
-              </div> */}
-              {/* the above can go into a component */}
             </div>
           </header>
         </div>
@@ -197,59 +206,77 @@ class App extends Component {
           <div className="wrapper">
             <h2>
               Tell us your starting address, where you're headed, and pick a
-              podcast genre!
+              podcast!
             </h2>
-            <form action="">
-              <label htmlFor="">Starting Address</label>
-              <input
-                value={this.state.from}
-                onChange={this.handleChange}
-                name="from"
-                type="text"
-                placeholder="Street, city, postal code"
-              />
+            <form action="" onSubmit={this.displayMap}>
+              <div className="borderBox1">
+                <p>please enter your address</p>
+                <label htmlFor="">Starting Address</label>
+                <input
+                  value={this.state.from}
+                  onChange={this.handleChange}
+                  name="from"
+                  type="text"
+                  placeholder="Street, city, postal code"
+                  required
+                />
 
-              <label htmlFor="">Destination</label>
-              <input
-                value={this.state.to}
-                onChange={this.handleChange}
-                name="to"
-                type="text"
-                placeholder="Street, city, postal code"
-              />
+                <label htmlFor="">Destination</label>
+                <input
+                  value={this.state.to}
+                  onChange={this.handleChange}
+                  name="to"
+                  type="text"
+                  placeholder="Street, city, postal code"
+                  required
+                />
+              </div>
+              <div className="borderBox1">
+                <p>please choose either a genre or search for a podcast</p>
+                <label htmlFor="">Search for podcast by name</label>
+                <input
+                  value={this.state.search}
+                  onChange={this.handleChange}
+                  name="search"
+                  type="text"
+                  placeholder="Example: My Favorite Murder"
+                />
 
-              <label htmlFor="podcastGenre">Podcast genre</label>
-              <select
-                name="podcastGenre"
-                id="podcastGenre"
-                onChange={this.handleChange}
-              >
-                <option value="" defaultValue disabled>
-                  Choose a podcast genre
-                </option>
-                <option value="144">Personal Finance</option>
-                <option value="77">Sports</option>
-                <option value="93">Business</option>
-                <option value="111">Education</option>
-                <option value="100">Arts</option>
-                <option value="132">Kids & Family</option>
-                <option value="122">Society & Culture</option>
-                <option value="133">Comedy</option>
-                <option value="168">Fiction</option>
-                <option value="117">Government</option>
-                <option value="88">Health & Fitness</option>
-                <option value="125">History</option>
-                <option value="82">Leisure</option>
-                <option value="134">Music</option>
-                <option value="99">News</option>
-                <option value="69">Religion & Spirituality</option>
-                <option value="107">Science</option>
-                <option value="68">TV & Film</option>
-                <option value="127">Technology</option>
-                <option value="135">True Crime</option>
-              </select>
-
-              <button onClick={this.displayMap}>LET'S GO!</button>
+                <label htmlFor="podcastGenre">
+                  Search for podcast by genre
+                </label>
+                <select
+                  name="podcastGenre"
+                  id="podcastGenre"
+                  onChange={this.handleChange}
+                >
+                  <option value="">Choose a podcast genre</option>
+                  <option value="">Back to search by name</option>
+                  <option value="144">Personal Finance</option>
+                  <option value="77">Sports</option>
+                  <option value="93">Business</option>
+                  <option value="111">Education</option>
+                  <option value="100">Arts</option>
+                  <option value="132">Kids & Family</option>
+                  <option value="122">Society & Culture</option>
+                  <option value="133">Comedy</option>
+                  <option value="168">Fiction</option>
+                  <option value="117">Government</option>
+                  <option value="88">Health & Fitness</option>
+                  <option value="125">History</option>
+                  <option value="82">Leisure</option>
+                  <option value="134">Music</option>
+                  <option value="99">News</option>
+                  <option value="69">Religion & Spirituality</option>
+                  <option value="107">Science</option>
+                  <option value="68">TV & Film</option>
+                  <option value="127">Technology</option>
+                  <option value="135">True Crime</option>
+                </select>
+                {/* the below button will clear the genre of podcast if user decides to change their mind and search for specific podcast instead & also clear the podcast name input field   */}
+                <button>clear</button>
+              </div>
+              <button>LET'S GO!</button>
             </form>
           </div>
         </section>
@@ -308,7 +335,6 @@ class App extends Component {
                       />
                       <p>Author: {podcast.publisher_original}</p>
                       <p>Time: {podcast.audio_length_sec / 60} mins</p>
-                      {/* <p>Summary: {podcast.description_original}</p> */}
                       <a href={podcast.link}>More Info</a>
                       <button
                         onClick={() => this.displayChosenPodcast(podcast)}
