@@ -455,6 +455,12 @@ li {
   margin: 5%;
 }
 
+.borderBox1 {
+  border: 2px solid #000;
+  padding: 5%;
+  margin: 2%;
+}
+
 /* #FFF6F7 beige, #E0F8D1 green, #F05F77 pink */
 
 /*   BODY:  font-family: 'Hind Siliguri', sans-serif;
