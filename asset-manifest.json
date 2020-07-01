@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/PodcastCommuter/static/css/main.2e848f3a.chunk.css",
-    "main.js": "/PodcastCommuter/static/js/main.7e02b1d8.chunk.js",
-    "main.js.map": "/PodcastCommuter/static/js/main.7e02b1d8.chunk.js.map",
+    "main.css": "/PodcastCommuter/static/css/main.dc9de693.chunk.css",
+    "main.js": "/PodcastCommuter/static/js/main.531b050e.chunk.js",
+    "main.js.map": "/PodcastCommuter/static/js/main.531b050e.chunk.js.map",
     "runtime-main.js": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js",
     "runtime-main.js.map": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js.map",
-    "static/js/2.41e85eda.chunk.js": "/PodcastCommuter/static/js/2.41e85eda.chunk.js",
-    "static/js/2.41e85eda.chunk.js.map": "/PodcastCommuter/static/js/2.41e85eda.chunk.js.map",
+    "static/js/2.6c1ea3d0.chunk.js": "/PodcastCommuter/static/js/2.6c1ea3d0.chunk.js",
+    "static/js/2.6c1ea3d0.chunk.js.map": "/PodcastCommuter/static/js/2.6c1ea3d0.chunk.js.map",
     "index.html": "/PodcastCommuter/index.html",
-    "precache-manifest.353f6e3f3c02fc2f6e17d930833d8d4f.js": "/PodcastCommuter/precache-manifest.353f6e3f3c02fc2f6e17d930833d8d4f.js",
+    "precache-manifest.fbb4660d38bf19c6558e330b0b3a0fcd.js": "/PodcastCommuter/precache-manifest.fbb4660d38bf19c6558e330b0b3a0fcd.js",
     "service-worker.js": "/PodcastCommuter/service-worker.js",
-    "static/css/main.2e848f3a.chunk.css.map": "/PodcastCommuter/static/css/main.2e848f3a.chunk.css.map",
-    "static/js/2.41e85eda.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.41e85eda.chunk.js.LICENSE.txt",
+    "static/css/main.dc9de693.chunk.css.map": "/PodcastCommuter/static/css/main.dc9de693.chunk.css.map",
+    "static/js/2.6c1ea3d0.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.6c1ea3d0.chunk.js.LICENSE.txt",
     "static/media/walkingIcon.png": "/PodcastCommuter/static/media/walkingIcon.f835e1f8.png",
-    "static/media/App.css": "/PodcastCommuter/static/media/watermelonBackground.c12e418a.jpg",
-    "static/media/watermelonBikeIcon.png": "/PodcastCommuter/static/media/watermelonBikeIcon.f2c0260c.png"
+    "static/media/App.css": "/PodcastCommuter/static/media/watermelonBackground4.6c1c60a2.jpg",
+    "static/media/watermelonBikeIcon.png": "/PodcastCommuter/static/media/watermelonBikeIcon.f2c0260c.png",
+    "static/media/watermelonfavicon.png": "/PodcastCommuter/static/media/watermelonfavicon.0ce774d5.png"
   },
   "entrypoints": [
     "static/js/runtime-main.90a3fa30.js",
-    "static/js/2.41e85eda.chunk.js",
-    "static/css/main.2e848f3a.chunk.css",
-    "static/js/main.7e02b1d8.chunk.js"
+    "static/js/2.6c1ea3d0.chunk.js",
+    "static/css/main.dc9de693.chunk.css",
+    "static/js/main.531b050e.chunk.js"
   ]
 }
