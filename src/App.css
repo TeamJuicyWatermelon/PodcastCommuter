@@ -293,6 +293,14 @@ form {
   padding: 5%;
 }
 
+form h2 {
+  margin-bottom: 5%;
+}
+
+form p {
+  background-color: rgba(255, 255, 255, 0);
+}
+
 label {
   font-size: 35px;
 }
@@ -307,6 +315,12 @@ input,
 select {
   padding: 1%;
   font-family: "Hind Siliguri", sans-serif;
+}
+
+input,
+select,
+option {
+  margin-top: 4%;
 }
 
 .flexContainer {
@@ -455,13 +469,114 @@ li {
   margin: 5%;
 }
 
+.podcastSection a:hover,
+.podcastSection a:focus,
+.podcastSection a:focus-within {
+  color: #f05f77;
+}
+
+.podcastSection h2 {
+  margin-bottom: 8%;
+}
+
 .borderBox1 {
   border: 2px solid #000;
   padding: 5%;
   margin: 2%;
 }
 
+select,
+.borderBox1 button {
+  margin: 0;
+}
+
+.chosenPodcast {
+  padding: 5%;
+  background-color: #fff6f7;
+}
+
+.chosenPodcast h2 {
+  margin-bottom: 2%;
+}
+
+.chosenPodcast img {
+  width: calc(500px - 50px);
+  margin: 25px;
+}
+
+audio {
+  margin-top: 10%;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+}
+
+/* .chosenPodcast img {
+  width: 50%;
+} */
+
 /* #FFF6F7 beige, #E0F8D1 green, #F05F77 pink */
 
 /*   BODY:  font-family: 'Hind Siliguri', sans-serif;
     HEADINGS: font-family: 'Poiret One', cursive; */
+
+/* ******************************** MEDIA QUERIES *********************************** */
+
+@media (max-width: 870px) {
+  .flexContainer3 {
+    flex-direction: column;
+  }
+
+  .flexContainer3 li {
+    width: 100%;
+  }
+}
+
+@media (max-width: 518px) {
+  header h1 {
+    font-size: 60px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  label,
+  option,
+  select {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 15px;
+  }
+
+  .borderBox1 p {
+    text-align: center;
+  }
+
+  .podcastSection h2,
+  .chosenPodcast h2,
+  .chosenPodcast p,
+  .chosenPodcast a {
+    font-size: 18px;
+  }
+
+  .chosenPodcast .flexContainer2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .chosenPodcast img {
+    width: 100%;
+  }
+
+  .transportationMode .flexContainer2,
+  .transportationMode ul {
+    flex-direction: column;
+    width: 100%;
+  }
+}
