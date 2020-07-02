@@ -376,6 +376,11 @@ section {
   width: 100%;
 }
 
+.chosenPodcastSection,
+.podcastSection {
+  min-height: 500px;
+}
+
 .background1 {
   background: url("./assets/watermelonBackground.jpg");
   background-size: cover;
@@ -513,9 +518,9 @@ footer {
   bottom: 0;
 }
 
-/* .chosenPodcast img {
-  width: 50%;
-} */
+footer p {
+  margin-bottom: 0;
+}
 
 /* #FFF6F7 beige, #E0F8D1 green, #F05F77 pink */
 
@@ -578,5 +583,11 @@ footer {
   .transportationMode ul {
     flex-direction: column;
     width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  audio {
+    width: 90%;
   }
 }
