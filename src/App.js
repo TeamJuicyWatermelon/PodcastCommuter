@@ -186,13 +186,14 @@ class App extends Component {
               <ul>
                 <li>How it works:</li>
                 <li>
-                  1. select a cateogory of podcast you're in the mood for!
+                  1. enter your starting address, followed by your destination.
                 </li>
                 <li>
-                  2. enter your starting address, followed by your destination.
+                  2. search a podcast by name, or select a cateogory of podcast
+                  you're in the mood for!
                 </li>
                 <li>
-                  3. let us work some magic and populate the perfect, juciest,
+                  3. let us work some magic and populate the perfect, juiciest,
                   most time coordinated podcast just for you and your commute!
                 </li>
               </ul>
@@ -210,14 +211,14 @@ class App extends Component {
             </h2>
             <form action="" onSubmit={this.displayMap}>
               <div className="borderBox1">
-                <p>please enter your address</p>
+                <h2>please enter your address</h2>
                 <label htmlFor="">Starting Address</label>
                 <input
                   value={this.state.from}
                   onChange={this.handleChange}
                   name="from"
                   type="text"
-                  placeholder="Street, city, postal code"
+                  placeholder="Street number, street name, city, province"
                   required
                 />
 
@@ -227,12 +228,14 @@ class App extends Component {
                   onChange={this.handleChange}
                   name="to"
                   type="text"
-                  placeholder="Street, city, postal code"
+                  placeholder="Street number, street name, city, province"
                   required
                 />
               </div>
               <div className="borderBox1">
-                <p>please choose either a genre or search for a podcast</p>
+                <h2>
+                  please search for a podcast by name, or choose a podcast genre{" "}
+                </h2>
                 <label htmlFor="">Search for podcast by name</label>
                 <input
                   value={this.state.search}
@@ -241,7 +244,9 @@ class App extends Component {
                   type="text"
                   placeholder="Example: My Favorite Murder"
                 />
+                <button>SELECT</button>
 
+                <p>OR</p>
                 <label htmlFor="podcastGenre">
                   Search for podcast by genre
                 </label>
@@ -274,9 +279,8 @@ class App extends Component {
                   <option value="135">True Crime</option>
                 </select>
                 {/* the below button will clear the genre of podcast if user decides to change their mind and search for specific podcast instead & also clear the podcast name input field   */}
-                <button>clear</button>
-              </div>
-              <button>LET'S GO!</button>
+                <button>SELECT</button>
+              </div>{" "}
             </form>
           </div>
         </section>
@@ -300,7 +304,7 @@ class App extends Component {
                       />
                     </button>
                   </li>
-                  <li>Bicycle Time: {this.state.bicycle} minutes</li>
+                  <li>Cycling Time: {this.state.bicycle} minutes</li>
                 </ul>
                 {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
                 <ul>
@@ -333,14 +337,16 @@ class App extends Component {
                         src={podcast.image}
                         alt={podcast.podcast_title_original}
                       />
-                      <p>Author: {podcast.publisher_original}</p>
-                      <p>Time: {podcast.audio_length_sec / 60} mins</p>
-                      <a href={podcast.link}>More Info</a>
-                      <button
-                        onClick={() => this.displayChosenPodcast(podcast)}
-                      >
-                        Choose
-                      </button>
+                      <div className="flexContainer">
+                        <p>Author: {podcast.publisher_original}</p>
+                        <p>Time: {podcast.audio_length_sec / 60} mins</p>
+                        <a href={podcast.link}>More Info</a>
+                        <button
+                          onClick={() => this.displayChosenPodcast(podcast)}
+                        >
+                          Choose
+                        </button>
+                      </div>
                     </li>
                   );
                 })}
@@ -350,21 +356,27 @@ class App extends Component {
             {this.state.isPodcastShown ? (
               <div key={chosenPodcast.id} className="chosenPodcast">
                 <h2>{chosenPodcast.podcast_title_original}</h2>
-                <img
-                  src={chosenPodcast.image}
-                  alt={chosenPodcast.podcast_title_original}
-                />
-                <p>Author: {chosenPodcast.publisher_original}</p>
-                <a href={chosenPodcast.link}>More Info</a>
-                <button>Choose</button>
-                <audio src={chosenPodcast.audio} controls />
+                <div className="flexContainer2">
+                  <img
+                    src={chosenPodcast.image}
+                    alt={chosenPodcast.podcast_title_original}
+                  />
+                  <div className="flexContainer">
+                    <p>Author: {chosenPodcast.publisher_original}</p>
+                    <a href={chosenPodcast.link}>More Information</a>
+                    <audio src={chosenPodcast.audio} controls />
+                  </div>
+                </div>
               </div>
             ) : null}
           </div>
         </section>
-        {/* <footer>
-          <p>enter our team members names and etc</p>
-        </footer> */}
+        <footer>
+          <p>
+            this juicy app was created during a not so juicy time in 2020 by
+            Cliff, Victor, Anh, and Ro
+          </p>
+        </footer>
       </div>
     );
   }
