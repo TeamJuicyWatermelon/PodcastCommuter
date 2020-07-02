@@ -23,9 +23,9 @@ class App extends Component {
     };
   }
 
-  scrollToSearch = (event) => {
-    event.preventDefault();
-    const searchSection = document.querySelector(".background1");
+  scrollToSearch = (section) => {
+    // event.preventDefault();
+    const searchSection = document.querySelector(section);
     searchSection.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -97,7 +97,8 @@ class App extends Component {
   };
 
   //Function to call Poscast API
-  getPodcasts = (transportationType) => {
+  getPodcasts = (transportationType, section) => {
+    
     // commuteType is the argument from onClick funtions (choose route type section)
     console.log(transportationType);
     let minLen;
@@ -151,16 +152,21 @@ class App extends Component {
       .catch((err) => {
         console.log(err); //ERROR HANDLING NEEDED HERE!!!
       });
+
+      this.scrollToSearch(section);
   };
 
   //----------------------------------
   //Function to display chosen Postcast
-  displayChosenPodcast = (podcast) => {
+  
+  displayChosenPodcast = (podcast, section) => {
     // console.log(podcast);
+    
     this.setState({
       isPodcastShown: true,
       chosenPodcast: podcast,
     });
+    this.scrollToSearch(section);
   };
 
   render() {
@@ -197,7 +203,7 @@ class App extends Component {
                   most time coordinated podcast just for you and your commute!
                 </li>
               </ul>
-              <button className="startButton" onClick={this.scrollToSearch}>
+              <button className="startButton" onClick={() => this.scrollToSearch(".background1")}>
                 Let's get started!{" "}
               </button>
             </div>
@@ -244,7 +250,7 @@ class App extends Component {
                   type="text"
                   placeholder="Example: My Favorite Murder"
                 />
-                <button>SELECT</button>
+                <button onClick={() => this.scrollToSearch(".background2")}>SELECT</button>
 
                 <p>OR</p>
                 <label htmlFor="podcastGenre">
@@ -279,7 +285,7 @@ class App extends Component {
                   <option value="135">True Crime</option>
                 </select>
                 {/* the below button will clear the genre of podcast if user decides to change their mind and search for specific podcast instead & also clear the podcast name input field   */}
-                <button>SELECT</button>
+                <button onClick={() => this.scrollToSearch(".background2")}>SELECT</button>
               </div>{" "}
             </form>
           </div>
@@ -297,7 +303,7 @@ class App extends Component {
                 <ul>
                   <li>
                     {" "}
-                    <button onClick={() => this.getPodcasts("bicycle")}>
+                    <button onClick={() => this.getPodcasts("bicycle", ".background3")}>
                       <img
                         src={watermelonBikeIcon}
                         alt="Transportation via biking"
@@ -309,7 +315,7 @@ class App extends Component {
                 {/* will need to convert mins to hrs in case user's commute length is longer than 60 mins */}
                 <ul>
                   <li>
-                    <button onClick={() => this.getPodcasts("pedestrian")}>
+                    <button onClick={() => this.getPodcasts("pedestrian", ".background3")}>
                       <img src={walkingIcon} alt="Transportation via walking" />
                     </button>
                   </li>
@@ -342,7 +348,7 @@ class App extends Component {
                         <p>Time: {podcast.audio_length_sec / 60} mins</p>
                         <a href={podcast.link}>More Info</a>
                         <button
-                          onClick={() => this.displayChosenPodcast(podcast)}
+                          onClick={() => this.displayChosenPodcast(podcast, ".chosenPodcastSection")}
                         >
                           Choose
                         </button>
@@ -352,25 +358,31 @@ class App extends Component {
                 })}
               </div>
             </ul>
-            {/* Ternary operator to display chosen podcast */}
-            {this.state.isPodcastShown ? (
-              <div key={chosenPodcast.id} className="chosenPodcast">
-                <h2>{chosenPodcast.podcast_title_original}</h2>
-                <div className="flexContainer2">
-                  <img
-                    src={chosenPodcast.image}
-                    alt={chosenPodcast.podcast_title_original}
-                  />
-                  <div className="flexContainer">
-                    <p>Author: {chosenPodcast.publisher_original}</p>
-                    <a href={chosenPodcast.link}>More Information</a>
-                    <audio src={chosenPodcast.audio} controls />
-                  </div>
-                </div>
-              </div>
-            ) : null}
+            
           </div>
         </section>
+
+        <section className="chosenPodcastSection">
+              {/* Ternary operator to display chosen podcast */}
+              {this.state.isPodcastShown ? (
+                <div key={chosenPodcast.id} className="chosenPodcast">
+                  <h2>{chosenPodcast.podcast_title_original}</h2>
+                  <div className="flexContainer2">
+                    <img
+                      src={chosenPodcast.image}
+                      alt={chosenPodcast.podcast_title_original}
+                    />
+                    <div className="flexContainer">
+                      <p>Author: {chosenPodcast.publisher_original}</p>
+                      <a href={chosenPodcast.link}>More Information</a>
+                      <audio src={chosenPodcast.audio} controls />
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
+        </section>
+
         <footer>
           <p>
             this juicy app was created during a not so juicy time in 2020 by
