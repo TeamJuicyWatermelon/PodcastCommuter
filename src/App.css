@@ -376,11 +376,6 @@ section {
   width: 100%;
 }
 
-.chosenPodcastSection,
-.podcastSection {
-  min-height: 500px;
-}
-
 .background1 {
   background: url("./assets/watermelonBackground.jpg");
   background-size: cover;
@@ -516,10 +511,21 @@ audio {
 footer {
   position: relative;
   bottom: 0;
+  background-color: #fff6f7;
+  text-align: center;
 }
 
 footer p {
   margin-bottom: 0;
+  padding: 3%;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+footer a:hover,
+footer a:focus,
+footer a:focus-within {
+  color: #f05f77;
 }
 
 /* #FFF6F7 beige, #E0F8D1 green, #F05F77 pink */
@@ -565,7 +571,8 @@ footer p {
   .podcastSection h2,
   .chosenPodcast h2,
   .chosenPodcast p,
-  .chosenPodcast a {
+  .chosenPodcast a,
+  footer p {
     font-size: 18px;
   }
 
