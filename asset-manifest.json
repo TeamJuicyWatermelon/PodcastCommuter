@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/PodcastCommuter/static/css/main.2edae0fc.chunk.css",
-    "main.js": "/PodcastCommuter/static/js/main.eeae7a3b.chunk.js",
-    "main.js.map": "/PodcastCommuter/static/js/main.eeae7a3b.chunk.js.map",
+    "main.css": "/PodcastCommuter/static/css/main.57ae6b41.chunk.css",
+    "main.js": "/PodcastCommuter/static/js/main.180ff437.chunk.js",
+    "main.js.map": "/PodcastCommuter/static/js/main.180ff437.chunk.js.map",
     "runtime-main.js": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js",
     "runtime-main.js.map": "/PodcastCommuter/static/js/runtime-main.90a3fa30.js.map",
     "static/js/2.d94b22f9.chunk.js": "/PodcastCommuter/static/js/2.d94b22f9.chunk.js",
     "static/js/2.d94b22f9.chunk.js.map": "/PodcastCommuter/static/js/2.d94b22f9.chunk.js.map",
     "index.html": "/PodcastCommuter/index.html",
-    "precache-manifest.c1121f6e5969ec6dbb043d7956006113.js": "/PodcastCommuter/precache-manifest.c1121f6e5969ec6dbb043d7956006113.js",
+    "precache-manifest.738d397ab078072a78a6cb4a52f7786b.js": "/PodcastCommuter/precache-manifest.738d397ab078072a78a6cb4a52f7786b.js",
     "service-worker.js": "/PodcastCommuter/service-worker.js",
-    "static/css/main.2edae0fc.chunk.css.map": "/PodcastCommuter/static/css/main.2edae0fc.chunk.css.map",
+    "static/css/main.57ae6b41.chunk.css.map": "/PodcastCommuter/static/css/main.57ae6b41.chunk.css.map",
     "static/js/2.d94b22f9.chunk.js.LICENSE.txt": "/PodcastCommuter/static/js/2.d94b22f9.chunk.js.LICENSE.txt",
     "static/media/walkingIcon.png": "/PodcastCommuter/static/media/walkingIcon.f835e1f8.png",
     "static/media/App.css": "/PodcastCommuter/static/media/watermelonBackground4.6c1c60a2.jpg",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.90a3fa30.js",
     "static/js/2.d94b22f9.chunk.js",
-    "static/css/main.2edae0fc.chunk.css",
-    "static/js/main.eeae7a3b.chunk.js"
+    "static/css/main.57ae6b41.chunk.css",
+    "static/js/main.180ff437.chunk.js"
   ]
 }
