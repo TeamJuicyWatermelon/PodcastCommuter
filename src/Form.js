@@ -18,7 +18,7 @@ class Form extends Component {
                 onChange={this.props.handleChange}
                 name="from"
                 type="text"
-                placeholder="Street number, street name, city, province"
+                placeholder="Street address, city, prov."
                 required
               />
 
@@ -28,7 +28,7 @@ class Form extends Component {
                 onChange={this.props.handleChange}
                 name="to"
                 type="text"
-                placeholder="Street number, street name, city, province"
+                placeholder="Street address, city, prov."
                 required
               />
             </div>
@@ -57,7 +57,7 @@ class Form extends Component {
                 id="podcastGenre"
                 onChange={this.props.handleChange}
               >
-                <option value="">Choose a podcast genre</option>
+                <option value="">Choose a genre</option>
                 <option value="144">Personal Finance</option>
                 <option value="77">Sports</option>
                 <option value="93">Business</option>

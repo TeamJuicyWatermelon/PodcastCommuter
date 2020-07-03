@@ -556,6 +556,20 @@ footer a:focus-within {
     font-size: 20px;
   }
 
+  header p {
+    font-size: 20px;
+  }
+
+  header li {
+    font-size: 20px;
+    margin-bottom: 5%;
+    line-height: 30px;
+  }
+
+  header img {
+    width: 10%;
+  }
+
   label,
   option,
   select {
@@ -564,10 +578,7 @@ footer a:focus-within {
 
   input {
     font-size: 15px;
-  }
-
-  .borderBox1 p {
-    text-align: center;
+    padding: 5%;
   }
 
   .podcastSection h2,
