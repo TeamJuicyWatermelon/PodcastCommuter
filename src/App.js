@@ -131,13 +131,20 @@ class App extends Component {
     })
       .then((response) => {
         response = response.data.results;
-        // console.log(response);
-        this.setState({
-          podcasts: response,
-        });
+        console.log(response);
+        if (response.length < 1) {
+          alert("ERROR");
+        } else if (response.length >= 0) {
+          this.setState({
+            podcasts: response,
+          });
+
+        }
+
+        
       })
-      .catch((err) => {
-        console.log(err); //ERROR HANDLING NEEDED HERE!!!
+      .catch(() => {
+        alert("WRONG"); //ERROR HANDLING NEEDED HERE!!!
       });
     this.scrollToSearch(section);
   };
