@@ -17,10 +17,10 @@ class Map extends Component {
             <div>
               <img src={mapImage} alt="Map of user commute" />
               <button onClick={this.props.zoomIn}>
-                <i class="fas fa-search-plus"></i>
+                <i className="fas fa-search-plus"></i>
               </button>
               <button onClick={this.props.zoomOut}>
-                <i class="fas fa-search-minus"></i>
+                <i className="fas fa-search-minus"></i>
               </button>
             </div>
           ) : null}

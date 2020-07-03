@@ -6,7 +6,7 @@ class Podcast extends Component {
     return (
       <section className="podcastBackground">
         <div id="here" className="wrapper">
-          <h2>Pick your podcast!</h2>
+          <h2>Pick your podcast</h2>
           <ul className="podcastSection">
             <div className="flexContainer3">
               {/* Map out the state of 'podcasts' array */}

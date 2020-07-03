@@ -147,14 +147,47 @@ class App extends Component {
 
     //Call Podcast API
 
-    if (minLen !== "" && maxLen !== "") {
+    if (minLen !== "" && maxLen !== "" && this.state.search !== "") {
       axios({
         url: "https://listen-api.listennotes.com/api/v2/search",
         method: "GET",
         headers: { "X-ListenAPI-Key": "ea2d65fb95fc4f59a943faa7a423b3ad" },
         responseType: "JSON",
         params: {
-          q: this.state.search + this.state.podcastGenre,
+          q: this.state.search,
+          genre_ids: this.state.podcastGenre,
+          type: "episode",
+          language: "English",
+          len_min: minLen,
+          len_max: maxLen,
+        },
+      })
+        .then((response) => {
+          response = response.data.results;
+          if (response.length < 1) {
+            alert(
+              "Hey! We didn't find a podcast that matches your search! Please try again!"
+            );
+          } else if (response.length >= 0) {
+            this.setState({
+              podcasts: response,
+            });
+          }
+        })
+        .catch(() => {
+          alert("Oops! Request didn't work! Please try again!");
+        });
+      this.scrollToSearch(section);
+    } else if (minLen !== "" && maxLen !== "" && this.state.search === "") {
+      axios({
+        url: "https://listen-api.listennotes.com/api/v2/search",
+        method: "GET",
+        headers: {
+          "X-ListenAPI-Key": "ea2d65fb95fc4f59a943faa7a423b3ad",
+        },
+        responseType: "JSON",
+        params: {
+          q: "podcast",
           genre_ids: this.state.podcastGenre,
           type: "episode",
           language: "English",
