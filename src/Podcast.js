@@ -23,21 +23,18 @@ class Podcast extends Component {
                       <p>Author: {podcast.publisher_original}</p>
                       {podcast.audio_length_sec / 60 / 60 >= 1 ? (
                         <p>
-                          Time: {Math.floor(podcast.audio_length_sec / 60 / 60)}{" "}
-                          hr{" "}
-                          {Math.round(podcast.audio_length_sec / 60) -
-                            60 *
-                              Math.floor(
-                                podcast.audio_length_sec / 60 / 60
-                              )}{" "}
-                          mins
+                          Time: {Math.floor(podcast.audio_length_sec / 60 / 60)} hr {Math.round(podcast.audio_length_sec / 60) - 60 * Math.floor(podcast.audio_length_sec / 60 / 60)} mins
                         </p>
                       ) : (
                         <p>
                           Time: {Math.round(podcast.audio_length_sec / 60)} mins
                         </p>
                       )}
-                      <a href={podcast.link}>More Info</a>
+                      <a 
+                      href={podcast.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >More Info</a>
                       <button
                         onClick={() =>
                           this.props.displayChosenPodcast(
@@ -69,7 +66,11 @@ class Podcast extends Component {
                 <div className="flexContainer">
                   <p>Episode: {chosenPodcast.title_original}</p>
                   <p>Author: {chosenPodcast.publisher_original}</p>
-                  <a href={chosenPodcast.link}>More Information</a>
+                  <a 
+                  href={chosenPodcast.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >More Information</a>
                   <audio src={chosenPodcast.audio} controls />
                 </div>
               </div>

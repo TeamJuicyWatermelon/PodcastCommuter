@@ -29,7 +29,7 @@ const Header = (props) => {
               className="startButton"
               onClick={() => props.scrollToSearch(".formBackground")}
             >
-              Let's get started!{" "}
+              Let's get started!
             </button>
           </div>
         </div>

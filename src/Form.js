@@ -82,7 +82,7 @@ class Form extends Component {
               >
                 SELECT
               </button>
-            </div>{" "}
+            </div>
           </form>
         </div>
       </section>

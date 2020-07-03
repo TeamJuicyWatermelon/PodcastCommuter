@@ -255,38 +255,29 @@ class App extends Component {
         <footer>
           <div className="">
             <p>
-              Podcast Commuter was created by{" "}
+              Podcast Commuter was created by 
               <a
                 href="https://github.com/anhthuydang"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
-                Anh Thuy Dang
-              </a>{" "}
-              &&{" "}
+                rel="noopener noreferrer"> Anh Thuy Dang </a> 
+              && 
               <a
                 href="https://github.com/cliffstonge"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                Cliff St-Onge
-              </a>{" "}
-              &&{" "}
+              > Cliff St-Onge </a> 
+              && 
               <a
                 href="https://github.com/rojhanpaydar"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                Ro Paydar
-              </a>{" "}
-              &&{" "}
+              > Ro Paydar </a> 
+              && 
               <a
                 href="https://github.com/VictorKwong"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                Victor Wong
-              </a>
+              > Victor Wong </a>
             </p>
           </div>
         </footer>
