@@ -17,8 +17,6 @@ class App extends Component {
       from: "",
       to: "",
       isMapShown: false,
-      // minTime: "",
-      // maxTime: "",
       podcastGenre: "",
       search: "",
       margin: 40,
@@ -28,7 +26,6 @@ class App extends Component {
   }
 
   scrollToSearch = (section) => {
-    // event.preventDefault();
     const searchSection = document.querySelector(section);
     searchSection.scrollIntoView({
       behavior: "smooth",
@@ -37,7 +34,6 @@ class App extends Component {
   };
 
   scrollToSearchBottom = () => {
-    // event.preventDefault();
     const searchSection = document.querySelector(".chosenPodcastSection");
     searchSection.scrollIntoView({
       behavior: "smooth",
@@ -89,7 +85,6 @@ class App extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    // console.log(event.target.value);
   };
 
   //Function to display MAP and get commute time lengths for both route types
@@ -112,7 +107,6 @@ class App extends Component {
               to: this.state.to,
             },
           }).then((response) => {
-            // console.log(response.data.route);
             //get commute time in seconds
             const commuteTimeSec = response.data.route.realTime;
             //convert commute time to minutes
@@ -131,16 +125,13 @@ class App extends Component {
   //Function to call Poscast API
   getPodcasts = (transportationType, section) => {
     // commuteType is the argument from onClick funtions (choose route type section)
-    // console.log(transportationType);
     let minLen = "";
     let maxLen = "";
 
-    // if (this.state.bicycle <= 180 || this.state.pedestrian <= 180) {
     if (transportationType === "bicycle" && this.state.bicycle <= 180) {
       //set maximum and minimum podcast lengths to call Podcasts
       minLen = this.state.bicycle;
       maxLen = Math.round(this.state.bicycle * 1.1 + 1);
-      // console.log(minLen, maxLen);
     } else if (
       transportationType === "pedestrian" &&
       this.state.pedestrian <= 180
@@ -148,9 +139,10 @@ class App extends Component {
       //set maximum and minimum podcast lengths to call Podcasts
       minLen = this.state.pedestrian;
       maxLen = Math.round(this.state.pedestrian * 1.1 + 1);
-      // console.log(minLen, maxLen);
     } else {
-      alert("ERROR");
+      alert(
+        "This commute time is too long! We need a commute that is 3 hours or less! Please try again!"
+      );
     }
 
     //Call Podcast API
@@ -173,26 +165,22 @@ class App extends Component {
         .then((response) => {
           response = response.data.results;
           if (response.length < 1) {
-            alert("ERROR");
+            alert(
+              "Hey! We didn't find a podcast that matches your search! Please try again!"
+            );
           } else if (response.length >= 0) {
             this.setState({
               podcasts: response,
             });
           }
-          // console.log(response);
-          // this.setState({
-          //   podcasts: response,
-          // });
         })
         .catch(() => {
           alert("Oops! Request didn't work! Please try again!");
-          // add in sweet alert
         });
       this.scrollToSearch(section);
     }
   };
 
-  //----------------------------------
   //Function to display chosen Postcast
   displayChosenPodcast = (podcast, section) => {
     this.resultButton();
@@ -200,15 +188,12 @@ class App extends Component {
       isPodcastShown: true,
       chosenPodcast: podcast,
     });
-    // this.scrollToSearch(section);
   };
 
   render() {
     return (
       <div className="App">
-        {/* section one */}
         <Header scrollToSearch={this.scrollToSearch} />
-        {/* section two */}
         <Form
           scrollToSearch={this.scrollToSearch}
           handleChange={this.handleChange}
@@ -217,7 +202,6 @@ class App extends Component {
           to={this.state.to}
           search={this.state.search}
         />
-        {/* section 3 */}
         <Map
           isMapShown={this.state.isMapShown}
           zoomIn={this.zoomIn}
@@ -229,7 +213,6 @@ class App extends Component {
           to={this.state.to}
           from={this.state.from}
         />
-        {/* section 4 */}
         <Podcast
           chosenPodcast={this.state.chosenPodcast}
           podcasts={this.state.podcasts}

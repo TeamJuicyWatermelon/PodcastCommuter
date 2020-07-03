@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Form extends Component {
   render() {
     return (
-      <section className="background1">
+      <section className="formBackground">
         <div className="wrapper">
           <h2>
             Tell us your starting address, where you're headed, and pick a
@@ -11,7 +11,7 @@ class Form extends Component {
           </h2>
           <form action="" onSubmit={this.props.displayMap}>
             <div className="borderBox1">
-              <h2>please enter your address</h2>
+              <h2>Please enter your address</h2>
               <label htmlFor="">Starting Address</label>
               <input
                 value={this.props.from}
@@ -34,7 +34,7 @@ class Form extends Component {
             </div>
             <div className="borderBox1">
               <h2>
-                please search for a podcast by name, or choose a podcast genre{" "}
+                Please search for a podcast by name, or choose a podcast genre{" "}
               </h2>
               <label htmlFor="">Search for podcast by name</label>
               <input
@@ -44,7 +44,9 @@ class Form extends Component {
                 type="text"
                 placeholder="Example: My Favorite Murder"
               />
-              <button onClick={() => this.props.scrollToSearch(".background2")}>
+              <button
+                onClick={() => this.props.scrollToSearch(".mapBackground")}
+              >
                 SELECT
               </button>
 
@@ -56,7 +58,6 @@ class Form extends Component {
                 onChange={this.props.handleChange}
               >
                 <option value="">Choose a podcast genre</option>
-                <option value="">Back to search by name</option>
                 <option value="144">Personal Finance</option>
                 <option value="77">Sports</option>
                 <option value="93">Business</option>
@@ -78,8 +79,9 @@ class Form extends Component {
                 <option value="127">Technology</option>
                 <option value="135">True Crime</option>
               </select>
-              {/* the below button will clear the genre of podcast if user decides to change their mind and search for specific podcast instead & also clear the podcast name input field   */}
-              <button onClick={() => this.props.scrollToSearch(".background2")}>
+              <button
+                onClick={() => this.props.scrollToSearch(".mapBackground")}
+              >
                 SELECT
               </button>
             </div>{" "}

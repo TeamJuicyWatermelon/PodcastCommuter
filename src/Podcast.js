@@ -4,7 +4,7 @@ class Podcast extends Component {
   render() {
     const chosenPodcast = this.props.chosenPodcast;
     return (
-      <section className="background3">
+      <section className="podcastBackground">
         <div id="here" className="wrapper">
           <h2>Pick your podcast!</h2>
           <ul className="podcastSection">
@@ -19,6 +19,7 @@ class Podcast extends Component {
                       alt={podcast.podcast_title_original}
                     />
                     <div className="flexContainer">
+                      <p>Episode: {podcast.title_original}</p>
                       <p>Author: {podcast.publisher_original}</p>
                       {podcast.audio_length_sec / 60 / 60 >= 1 ? (
                         <p>
@@ -66,6 +67,7 @@ class Podcast extends Component {
                   alt={chosenPodcast.podcast_title_original}
                 />
                 <div className="flexContainer">
+                  <p>Episode: {chosenPodcast.title_original}</p>
                   <p>Author: {chosenPodcast.publisher_original}</p>
                   <a href={chosenPodcast.link}>More Information</a>
                   <audio src={chosenPodcast.audio} controls />

@@ -278,6 +278,10 @@ header img {
   width: 4%;
 }
 
+header li {
+  margin-bottom: 1%;
+}
+
 header img:hover {
   background-color: rgba(141, 62, 62, 0);
 }
@@ -376,15 +380,28 @@ section {
   width: 100%;
 }
 
-.background1 {
+/* section 2 */
+.formBackground {
   background: url("./assets/watermelonBackground.jpg");
   background-size: cover;
   padding: 5%;
 }
 
-.background2 {
+/* section 3 */
+.mapBackground {
   background-color: #e0f8d1;
   padding: 5%;
+}
+
+/* section 4 */
+.podcastBackground {
+  background-image: url("./assets/watermelonBackground4.jpg");
+  background-size: contain;
+  padding: 5%;
+}
+
+.podcastBackground ul {
+  background-color: rgba(255, 255, 255, 0);
 }
 
 input,
@@ -419,16 +436,6 @@ img:focus-within {
 
 li {
   list-style: none;
-}
-
-.background3 {
-  background-image: url("./assets/watermelonBackground4.jpg");
-  background-size: contain;
-  padding: 5%;
-}
-
-.background3 ul {
-  background-color: rgba(255, 255, 255, 0);
 }
 
 .transportationMode ul {
@@ -483,11 +490,6 @@ li {
   border: 2px solid #000;
   padding: 5%;
   margin: 2%;
-}
-
-select,
-.borderBox1 button {
-  margin: 0;
 }
 
 .chosenPodcast {
