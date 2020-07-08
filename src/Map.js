@@ -30,7 +30,7 @@ class Map extends Component {
               <div className="flexContainer2">
                 <ul>
                   <li>
-                    {" "}
+                     
                     <button
                       onClick={() =>
                         this.props.getPodcasts("bicycle", ".podcastBackground")
@@ -44,11 +44,7 @@ class Map extends Component {
                   </li>
                   {this.props.bicycle / 60 >= 1 ? (
                     <li>
-                      Cycling Time: {Math.floor(this.props.bicycle / 60)}
-                      hr{" "}
-                      {this.props.bicycle -
-                        60 * Math.floor(this.props.bicycle / 60)}
-                      mins{" "}
+                      Cycling Time: {Math.floor(this.props.bicycle / 60)} hr {this.props.bicycle - 60 * Math.floor(this.props.bicycle / 60)} mins 
                     </li>
                   ) : (
                     <li>Cycling Time: {this.props.bicycle} mins</li>
@@ -70,10 +66,7 @@ class Map extends Component {
                   </li>
                   {this.props.pedestrian / 60 >= 1 ? (
                     <li>
-                      Walking Time: {Math.floor(this.props.pedestrian / 60)} hr{" "}
-                      {this.props.pedestrian -
-                        60 * Math.floor(this.props.pedestrian / 60)}
-                      mins{" "}
+                      Walking Time: {Math.floor(this.props.pedestrian / 60)} hr {this.props.pedestrian - 60 * Math.floor(this.props.pedestrian / 60)} mins 
                     </li>
                   ) : (
                     <li>Walking Time: {this.props.pedestrian} mins</li>
