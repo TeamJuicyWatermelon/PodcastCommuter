@@ -10,7 +10,7 @@ class Map extends Component {
     return (
       <section className="mapBackground">
         <div className="wrapper">
-          <h2>Choose your method of transportion</h2>
+          <h2>Choose your method of transportation</h2>
 
           {/* Ternary operator to display Map */}
           {this.props.isMapShown ? (
